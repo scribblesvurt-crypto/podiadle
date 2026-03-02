@@ -186,10 +186,16 @@
         .consent-group input[type="checkbox"] {
             width: 20px;
             height: 20px;
+            min-width: 20px;
+            min-height: 20px;
             margin-top: 2px;
             flex-shrink: 0;
             accent-color: var(--hud-orange);
             cursor: pointer;
+            appearance: auto;
+            -webkit-appearance: checkbox;
+            border: 2px solid var(--white);
+            background: transparent;
         }
 
         .consent-group label {
