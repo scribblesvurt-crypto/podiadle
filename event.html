@@ -184,28 +184,56 @@
         }
 
         .consent-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            min-width: 20px;
-            min-height: 20px;
-            margin-top: 2px;
-            flex-shrink: 0;
-            accent-color: var(--hud-orange);
-            cursor: pointer;
-            appearance: auto;
-            -webkit-appearance: checkbox;
-            border: 2px solid var(--white);
-            background: transparent;
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
         }
 
-        .consent-group label {
+        .consent-check {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            min-height: 22px;
+            border: 2px solid #666;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1px;
+        }
+
+        .consent-group input[type="checkbox"]:checked + .consent-check {
+            background: var(--hud-orange);
+            border-color: var(--hud-orange);
+        }
+
+        .consent-check::after {
+            content: '';
+            display: none;
+            width: 6px;
+            height: 11px;
+            border: solid var(--white);
+            border-width: 0 2.5px 2.5px 0;
+            transform: rotate(45deg);
+            margin-bottom: 2px;
+        }
+
+        .consent-group input[type="checkbox"]:checked + .consent-check::after {
+            display: block;
+        }
+
+        .consent-label {
             font-size: 0.8rem;
             color: #aaa;
             line-height: 1.4;
             cursor: pointer;
         }
 
-        .consent-group label a {
+        .consent-label a {
             color: var(--hud-orange);
             text-decoration: underline;
         }
@@ -996,10 +1024,11 @@
                         <label for="visitor-email">Email</label>
                         <input type="email" id="visitor-email" name="email" placeholder="your.email@example.com" required autocomplete="off">
                     </div>
-                    <div class="consent-group">
+                    <label class="consent-group">
                         <input type="checkbox" id="gdpr-consent" name="consent" value="yes" required>
-                        <label for="gdpr-consent">I consent to the University of Huddersfield storing my name and email to contact me about podiatry courses and events. I can withdraw consent at any time by emailing <a href="mailto:p.roberts@hud.ac.uk">p.roberts@hud.ac.uk</a>.</label>
-                    </div>
+                        <span class="consent-check"></span>
+                        <span class="consent-label">I consent to the University of Huddersfield storing my name and email to contact me about podiatry courses and events. I can withdraw consent at any time by emailing <a href="mailto:p.roberts@hud.ac.uk">p.roberts@hud.ac.uk</a>.</span>
+                    </label>
                     <button type="submit" class="play-btn" id="play-btn">Play</button>
                 </form>
             </div>
